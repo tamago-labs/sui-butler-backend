@@ -18,7 +18,7 @@ const Header = () => {
                     <div className="flex justify-start min-w-[120px] flex-1">
                         <Link href="/" className="flex items-center">
                             <div className="text-lg md:text-xl font-bold flex items-center">
-                                <span className="text-white">Sui MCP</span>
+                                <span className="text-white">Sui Serverless MCP</span>
                             </div>
                         </Link>
                     </div>

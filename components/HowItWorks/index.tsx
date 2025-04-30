@@ -45,7 +45,7 @@ const HowItWorks = () => {
                         <div>
                             <h3 className="text-xl font-semibold text-white mb-2">Configure in Claude Desktop</h3>
                             <p className="text-blue-100/80">
-                                Add your private key to the config file - transactions will be signed automatically
+                                Add your private key to the config file, transactions will be signed automatically in Claude Desktop
                             </p>
                         </div>
                     </div>
@@ -55,13 +55,13 @@ const HowItWorks = () => {
                     <pre className="text-blue-300 font-mono text-xs overflow-auto">
                         {`{
   "mcpServers": {
-    "hedera": {
+    "sui-mcp": {
       "command": "npx",
       "args": [
         "-y",
         "sui-serverless-mcp",
         "--sui_private_key=YOUR_PRIVATE_KEY", 
-        "--sui_network=testnet"
+        "--sui_network=mainnet"
       ],
       "disabled": false
     }
@@ -112,7 +112,7 @@ const HowItWorks = () => {
                         <div>
                             <h3 className="text-xl font-semibold text-white mb-2">Configure in Claude Desktop</h3>
                             <p className="text-blue-100/80">
-                                Add your access key to the config file - read operations work immediately
+                                Update your access key in the config file, transactions will need to be approved manually on the dashboard
                             </p>
                         </div>
                     </div>
@@ -122,13 +122,13 @@ const HowItWorks = () => {
                     <pre className="text-blue-300 font-mono text-xs overflow-auto">
                         {`{
   "mcpServers": {
-    "hedera": {
+    "sui-mcp": {
       "command": "npx",
       "args": [
         "-y",
         "sui-serverless-mcp",
         "--sui_access_key=YOUR_ACCESS_KEY", 
-        "--sui_network=testnet"
+        "--sui_network=mainnet"
       ],
       "disabled": false
     }
@@ -141,7 +141,7 @@ const HowItWorks = () => {
                     <div className="flex items-start">
                         <ArrowLeftRight className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                         <p className="text-green-300 text-sm">
-                            Transaction Security: All transfer operations will require your approval in the dashboard before execution.
+                            Security Note: You will need to use your zkLogin account to approve if the operation requires it, such as transferring tokens
                         </p>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ const HowItWorks = () => {
             <div className="text-center mb-10">
                 <h3 className="text-2xl font-bold text-white mb-2">Start Using Natural Language</h3>
                 <p className="text-blue-100/80 max-w-2xl mx-auto">
-                    Once configured, interact with Sui blockchain using simple conversational commands
+                Once configured, you can initiate on-chain transactions on Sui just by chatting. With zkLogin, there's no need to manage any private keys 
                 </p>
             </div>
 
@@ -168,29 +168,66 @@ const HowItWorks = () => {
                     <div></div>
                 </div>
 
-                <div className="space-y-4 mb-4">
+                <div className="space-y-4 mb-6">
+                    {/* Balance Check */}
                     <div className="bg-blue-950/50 rounded-lg p-4 text-blue-200">
-                        <p className="text-sm">Check my SUI balance</p>
+                        <p className="text-sm">Help check my SUI balance</p>
                     </div>
 
                     <div className="bg-blue-900/60 rounded-lg p-4">
                         <div className="flex items-center mb-2">
                             <div className="w-6 h-6 rounded-full bg-purple-600 mr-2"></div>
-                            <p className="text-white font-medium">Claude</p>
+                            <p className="text-white font-medium">Your AI</p>
                         </div>
                         <p className="text-blue-100/90 text-sm">
                             I've checked your Sui wallet and your current balance is 42.58 SUI.
                         </p>
                     </div>
+
+
+                    {/* Transfer Request */}
+                    <div className="bg-blue-950/50 rounded-lg p-4 text-blue-200">
+                        <p className="text-sm">Help transfer 5 SUI to 0x9e37a12cdc2f9b95d9ae2c3a7e457ae3f0a10d32</p>
+                    </div>
+
+                    <div className="bg-blue-900/60 rounded-lg p-4">
+                        <div className="flex items-center mb-2">
+                            <div className="w-6 h-6 rounded-full bg-purple-600 mr-2"></div>
+                            <p className="text-white font-medium">Your AI</p>
+                        </div>
+                        <p className="text-blue-100/90 text-sm mb-3">
+                            I've prepared a transaction to transfer 5 SUI to address <span className="font-mono">0x9e37...d32</span>.
+                        </p>
+                        <div className="bg-blue-950/60 border border-blue-800/50 rounded-lg p-3">
+                            <div className="flex justify-between mb-2">
+                                <p className="text-sm text-blue-300">Amount:</p>
+                                <p className="text-white font-medium">5 SUI</p>
+                            </div>
+                            <div className="flex justify-between mb-2">
+                                <p className="text-sm text-blue-300">Recipient:</p>
+                                <p className="text-white font-mono text-sm">0x9e37a1...d32</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p className="text-sm text-blue-300">Status:</p>
+                                <p className="text-yellow-400 font-medium">Pending Approval</p>
+                            </div>
+                        </div>
+                        <p className="text-blue-100/90 text-sm mt-3">
+                            This transaction requires your approval. Please check your dashboard to approve or reject it.
+                        </p>
+                    </div>
+
+
                 </div>
 
                 <div className="border-t border-blue-700/30 pt-4">
                     <div className="bg-blue-800/50 rounded-full px-4 py-2 text-blue-200 text-sm flex items-center">
-                        <span className="flex-grow">Ask me anything about your Sui wallet...</span>
+                        <span className="flex-grow">Send tokens, check NFTs, and more...</span>
                         <Send className="w-4 h-4" />
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 }

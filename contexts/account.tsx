@@ -10,10 +10,15 @@ import { useEnokiFlow, useZkLogin, useZkLoginSession } from "@mysten/enoki/react
 import { fromB64, toB64 } from "@mysten/sui/utils";
 // import axios, { AxiosResponse } from "axios";
 import { jwtDecode } from "jwt-decode";
+import { DatabaseContext } from "./database";
+
+import { useInterval } from "./useInterval";
 
 export const AccountContext = createContext({})
 
 const Provider = ({ children }: any) => {
+
+  const { getProfile }: any = useContext(DatabaseContext)
 
   const client = useSuiClient()
 
@@ -28,11 +33,12 @@ const Provider = ({ children }: any) => {
     {
       user: undefined,
       emailAddress: undefined,
-      loading: true
+      loading: true,
+      profile: undefined
     }
   )
 
-  const { user } = values
+  const { user, profile } = values
 
   const isConnected = !!address
 
@@ -52,6 +58,23 @@ const Provider = ({ children }: any) => {
     [router, pathname]
   );
 
+  useInterval(() => {
+    if (user && address) {
+      getProfile(user.email, address).then(
+        (entry: any) => {
+          dispatch({
+            profile: entry
+          })
+        }
+      )
+    } else {
+      dispatch({
+        profile: undefined
+      })
+    }
+  }, 3000)
+ 
+
   useEffect(() => {
     const initialUser = sessionStorage.getItem("user");
     if (initialUser) {
@@ -66,7 +89,7 @@ const Provider = ({ children }: any) => {
   }, [handleLoginAs, router]);
 
   const handleLogout = () => {
-    dispatch({ user: undefined, emailAddress: undefined });
+    dispatch({ user: undefined, emailAddress: undefined, profile: undefined });
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("userRole");
     enokiFlow.logout();
@@ -147,12 +170,14 @@ const Provider = ({ children }: any) => {
       },
       user,
       address,
-      getBalance
+      getBalance,
+      profile
     }), [
     isConnected,
     user,
     address,
-    getBalance
+    getBalance,
+    profile
   ])
 
   return (

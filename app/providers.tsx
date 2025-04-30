@@ -20,7 +20,10 @@ import { getFullnodeUrl } from "@mysten/sui/client";
 import "@mysten/dapp-kit/dist/index.css"; 
 
 import AccountProvider from "../contexts/account" 
+import DatabaseProvider  from "../contexts/database"
 import outputs from "@/amplify_outputs.json";
+
+Amplify.configure(outputs);
 
 const { networkConfig } = createNetworkConfig({
 	testnet: { url: getFullnodeUrl('testnet') },
@@ -45,21 +48,23 @@ export function Providers({ children }: any) {
 
 
 	return ( 
-		 <QueryClientProvider client={queryClient}>
+		<QueryClientProvider client={queryClient}>
 			 <SuiClientProvider networks={networkConfig} defaultNetwork="testnet">
 				{/*<RegisterEnokiWallets />*/}
 				<WalletProvider 
 					autoConnect
 					storage={sessionStorageAdapter}
 				>
-				<EnokiFlowProvider apiKey={process.env.ENOKI_API_KEY || ""}>
-				<AccountProvider>
-					 { children }
-					 </AccountProvider>
-					 </EnokiFlowProvider>
+					<EnokiFlowProvider apiKey={process.env.ENOKI_API_KEY || ""}>
+						<DatabaseProvider>
+							<AccountProvider>
+								{ children }
+							</AccountProvider>
+						</DatabaseProvider>
+					</EnokiFlowProvider>
 				</WalletProvider>
 			 </SuiClientProvider> 	
-			 </QueryClientProvider>
+		</QueryClientProvider>
 		)
 }
 

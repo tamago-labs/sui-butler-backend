@@ -12,9 +12,10 @@ const schema = a.schema({
     .model({
       userId: a.id().required(),
       user: a.belongsTo('User', "userId"),
-      toolUsed: a.string(),
-      details: a.json(),
+      toolName: a.string(),
+      params: a.json(),
       isCompleted: a.boolean(),
+      status: a.string(),
       digest: a.string(),
       network: a.string()
     })

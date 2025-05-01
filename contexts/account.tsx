@@ -48,11 +48,12 @@ const Provider = ({ children }: any) => {
       dispatch({ user: newUser });
       sessionStorage.setItem("user", JSON.stringify(newUser));
       sessionStorage.setItem("userRole", newUser.role);
+
       if (pathname === "/" || pathname === "/auth") {
         if (newUser.role === "anonymous" || !newUser.role) {
-          router.push("/");
+          router.push("/dashboard");
         } else {
-          router.push("/");
+          router.push("/dashboard");
         }
       }
     },
@@ -116,9 +117,7 @@ const Provider = ({ children }: any) => {
         },
       })
       .then((url) => {
-        dispatch({
-          network: networkName
-        })
+        sessionStorage.setItem("network", networkName);
         router.push(url);
       })
       .catch((err) => {
@@ -148,7 +147,8 @@ const Provider = ({ children }: any) => {
       const decoded: any = jwtDecode(token);
 
       dispatch({
-        emailAddress: (decoded).email
+        emailAddress: (decoded).email,
+        network: sessionStorage.getItem("network")
       })
 
       handleLoginAs({

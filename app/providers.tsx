@@ -50,7 +50,7 @@ export function Providers({ children }: any) {
 
 	return ( 
 		<QueryClientProvider client={queryClient}>
-			 <SuiClientProvider networks={networkConfig} defaultNetwork="testnet">
+			 <SuiClientProvider networks={networkConfig} defaultNetwork="mainnet">
 				{/*<RegisterEnokiWallets />*/}
 				<WalletProvider 
 					autoConnect

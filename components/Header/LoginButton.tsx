@@ -7,10 +7,14 @@ import { motion } from 'framer-motion';
 import { FcGoogle } from "react-icons/fc";
 
 import { usePathname } from "next/navigation"
+import { useSuiClientContext } from "@mysten/dapp-kit"
 
 import { ArrowRight, User, Mail, X, Globe, Check, Beaker, Info } from "lucide-react"
 
 const LoginButton = () => {
+
+    const ctx = useSuiClientContext();
+ 
 
     const [selectedNetwork, setSelectedNetwork] = useState<"mainnet" | "testnet">('mainnet'); // Default to mainnet
     const [modal, setModal] = useState<boolean>(false)
@@ -50,12 +54,22 @@ const LoginButton = () => {
                                     Select Network
                                 </label>
                                 <div className="grid grid-cols-2 gap-3 mt-[15px]">
+
+                                    {/*{Object.keys(ctx.networks).map((network) => (
+                                        <button key={network} onClick={() => ctx.selectNetwork(network)}>
+                                            {`select ${network}`}
+                                        </button>
+                                    ))}
+*/}
                                     <button
                                         className={`flex items-center justify-center p-3 rounded-lg border transition ${selectedNetwork === 'mainnet'
                                             ? 'bg-blue-600 border-blue-500'
                                             : 'bg-blue-900/60 border-blue-700/50 hover:bg-blue-900/80'
                                             }`}
-                                        onClick={() => setSelectedNetwork('mainnet')}
+                                        onClick={() => {
+                                            setSelectedNetwork('mainnet')
+                                            ctx.selectNetwork("mainnet")
+                                        }}
                                     >
                                         <Globe className="mr-2 h-5 w-5" />
                                         <span>Mainnet</span>
@@ -68,7 +82,10 @@ const LoginButton = () => {
                                             ? 'bg-blue-600 border-blue-500'
                                             : 'bg-blue-900/60 border-blue-700/50 hover:bg-blue-900/80'
                                             }`}
-                                        onClick={() => setSelectedNetwork('testnet')}
+                                        onClick={() => {
+                                            ctx.selectNetwork("testnet")
+                                            setSelectedNetwork('testnet')
+                                        }}
                                     >
                                         <Beaker className="mr-2 h-5 w-5" />
                                         <span>Testnet</span>

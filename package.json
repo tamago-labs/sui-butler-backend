@@ -11,6 +11,7 @@
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "^1.6.2",
     "@aws-amplify/ui-react": "^6.5.5",
+    "@cetusprotocol/aggregator-sdk": "^0.8.0",
     "@mysten/dapp-kit": "^0.16.1",
     "@mysten/enoki": "^0.6.8",
     "@mysten/sui": "^1.29.0",

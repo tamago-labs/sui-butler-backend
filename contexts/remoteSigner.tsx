@@ -8,6 +8,9 @@ import { useCurrentAccount, useCurrentWallet, useDisconnectWallet, useSignTransa
 import { Transaction } from '@mysten/sui/transactions';
 import { useEnokiFlow, useZkLogin, useZkLoginSession } from "@mysten/enoki/react";
 import { SUI_SYSTEM_STATE_OBJECT_ID } from "@mysten/sui/utils";
+import { CETUS_SUPPORT_LIST } from "../utils/constants"
+import { AggregatorClient, Env } from "@cetusprotocol/aggregator-sdk";
+
 
 export const RemoteContext = createContext({})
 
@@ -21,7 +24,7 @@ const Provider = ({ children }: any) => {
 
     const build = async (toolName: string, params: any, sender: string) => {
 
-        if (!["StakeSuiTool", "TransferTokenTool", "UnstakeSuiTool"].includes(toolName)) {
+        if (!["StakeSuiTool", "TransferTokenTool", "UnstakeSuiTool", "SwapTokensTool"].includes(toolName)) {
             throw new Error(`Pending transaction with tool: ${toolName} is not supported`)
         }
 
@@ -31,6 +34,8 @@ const Provider = ({ children }: any) => {
             return await buildStakeSuiTool(params, sender)
         } else if (toolName === "UnstakeSuiTool") {
             return await buildUnstakeSuiTool(params, sender)
+        } else if (toolName === "SwapTokensTool") {
+            return await buildSwapTokensTool(params, sender)
         }
 
     }
@@ -160,7 +165,7 @@ const Provider = ({ children }: any) => {
     const buildUnstakeSuiTool = async (params: any, sender: string) => {
 
         // prepare transaction
-        const txb = new Transaction(); 
+        const txb = new Transaction();
 
         // get the coin object
         txb.moveCall({
@@ -175,9 +180,72 @@ const Provider = ({ children }: any) => {
 
     }
 
-    const approve = async (transactionId: string, toolName: string, params: any, network: string) => {
+    const buildSwapTokensTool = async (params: any, sender: string) => {
 
-        const keypair = await enokiFlow.getKeypair({ network: "testnet" });
+        const fromToken = params.fromToken
+        const toToken = params.toToken
+        const amount = params.amount
+
+        if (!CETUS_SUPPORT_LIST.map(item => item.symbol).includes(fromToken.toLowerCase())) {
+            throw new Error(`The source token "${fromToken}" is not supported.`)
+        }
+
+        if (!CETUS_SUPPORT_LIST.map(item => item.symbol).includes(toToken.toLowerCase())) {
+            throw new Error(`The destination token "${toToken}" is not supported.`)
+        }
+
+        if (fromToken.toLowerCase() === toToken.toLowerCase()) {
+            throw new Error("Source and destination tokens must be different.");
+        }
+
+        const fromTokenEntry = CETUS_SUPPORT_LIST.find(item => item.symbol === fromToken.toLowerCase())
+        const toTokenEntry = CETUS_SUPPORT_LIST.find(item => item.symbol === toToken.toLowerCase())
+
+        if (!fromTokenEntry || !toTokenEntry) {
+            throw new Error("Invalid token entry")
+        }
+
+        const fromTokenMetadata = await suiClient.getCoinMetadata({
+            coinType: fromTokenEntry.coinType,
+        });
+
+        const client = new AggregatorClient({
+            signer: sender,
+        })
+
+        const routers = await client.findRouters({
+            from: fromTokenEntry.coinType,
+            target: toTokenEntry.coinType,
+            amount: `${((new BigNumber(amount)).multipliedBy(10 ** (fromTokenMetadata?.decimals || 9)))}`,
+            byAmountIn: true,
+        })
+
+        // prepare transaction
+        const txb = new Transaction();
+
+        if (!routers) {
+            throw new Error("Failed to get router entry")
+        }
+
+        await client.fastRouterSwap({
+            routers,
+            txb,
+            slippage: 0.03,
+            refreshAllCoins: true
+        })
+
+        const result = await client.devInspectTransactionBlock(txb)
+
+        if (result.effects?.status.status !== "success") {
+            throw new Error("Failed to simulate swap execution. Please verify your inputs and try again.")
+        }
+
+        return txb
+    }
+
+    const approve = async (transactionId: string, toolName: string, params: any, network: any) => {
+
+        const keypair = await enokiFlow.getKeypair({ network });
 
         const sender = keypair.toSuiAddress()
 

@@ -21,6 +21,7 @@ import "@mysten/dapp-kit/dist/index.css";
 
 import AccountProvider from "../contexts/account" 
 import DatabaseProvider  from "../contexts/database"
+import RemoteProvider from "../contexts/remoteSigner"
 import outputs from "@/amplify_outputs.json";
 
 Amplify.configure(outputs);
@@ -58,7 +59,9 @@ export function Providers({ children }: any) {
 					<EnokiFlowProvider apiKey={process.env.ENOKI_API_KEY || ""}>
 						<DatabaseProvider>
 							<AccountProvider>
+								<RemoteProvider>
 								{ children }
+								</RemoteProvider>
 							</AccountProvider>
 						</DatabaseProvider>
 					</EnokiFlowProvider>

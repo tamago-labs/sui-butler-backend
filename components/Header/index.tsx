@@ -23,20 +23,18 @@ const Header = () => {
                         </Link>
                     </div>
 
-
                     {/* Desktop navigation */}
-                    <nav className=" flex space-x-10">
+                    <nav className="hidden md:flex space-x-10">
                         <Link href="/dashboard" className={` ${path === "/dashboard" ? "text-white" : "text-blue-100 hover:text-white "} font-medium`}>
                             Dashboard
                         </Link>
-                        <a href="#" className="text-blue-100 hover:text-white font-medium">
+                        <Link href="https://github.com/tamago-labs/sui-mcp-client" target="_blank" className="text-blue-100 hover:text-white font-medium">
                             GitHub
-                        </a>
+                        </Link>
                     </nav>
 
                     {/* Desktop CTA */}
                     <div className=" flex items-center justify-end md:flex-1 lg:w-0">
-
                         <LoginButton />
                     </div>
                 </div>

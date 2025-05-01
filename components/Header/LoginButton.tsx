@@ -8,10 +8,11 @@ import { FcGoogle } from "react-icons/fc";
 
 import { usePathname } from "next/navigation"
 
-import { ArrowRight, User, Mail, X } from "lucide-react"
+import { ArrowRight, User, Mail, X, Globe, Check, Beaker, Info } from "lucide-react"
 
 const LoginButton = () => {
 
+    const [selectedNetwork, setSelectedNetwork] = useState<"mainnet" | "testnet">('mainnet'); // Default to mainnet
     const [modal, setModal] = useState<boolean>(false)
 
     const path = usePathname()
@@ -29,11 +30,10 @@ const LoginButton = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
-                        className="bg-blue-800 z-20 rounded-xl border text-white border-blue-700 p-6 max-w-md w-full "
+                        className="bg-blue-800 z-20 rounded-xl border text-white border-blue-700 p-6 max-w-2xl w-full"
                     >
                         <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-xl font-bold">Select Authentication Method</h3>
-
+                            <h3 className="text-xl font-bold">Authentication Settings</h3>
                             <button
                                 className="text-blue-100/80 hover:text-white"
                                 onClick={() => setModal(false)}
@@ -41,27 +41,70 @@ const LoginButton = () => {
                                 <X />
                             </button>
                         </div>
-                        <div>
-                            <p className="text-blue-100/80">
-                                Choose an available option below to sign in
-                            </p>
+
+                        {/* Network Selection */}
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className=" ">
+                                <label className="block text-blue-100 mb-2 font-medium">
+                                    Select Network
+                                </label>
+                                <div className="grid grid-cols-2 gap-3 mt-[15px]">
+                                    <button
+                                        className={`flex items-center justify-center p-3 rounded-lg border transition ${selectedNetwork === 'mainnet'
+                                            ? 'bg-blue-600 border-blue-500'
+                                            : 'bg-blue-900/60 border-blue-700/50 hover:bg-blue-900/80'
+                                            }`}
+                                        onClick={() => setSelectedNetwork('mainnet')}
+                                    >
+                                        <Globe className="mr-2 h-5 w-5" />
+                                        <span>Mainnet</span>
+                                        {selectedNetwork === 'mainnet' && (
+                                            <Check className="ml-2 h-4 w-4 text-blue-300" />
+                                        )}
+                                    </button>
+                                    <button
+                                        className={`flex items-center justify-center p-3 rounded-lg border transition ${selectedNetwork === 'testnet'
+                                            ? 'bg-blue-600 border-blue-500'
+                                            : 'bg-blue-900/60 border-blue-700/50 hover:bg-blue-900/80'
+                                            }`}
+                                        onClick={() => setSelectedNetwork('testnet')}
+                                    >
+                                        <Beaker className="mr-2 h-5 w-5" />
+                                        <span>Testnet</span>
+                                        {selectedNetwork === 'testnet' && (
+                                            <Check className="ml-2 h-4 w-4 text-blue-300" />
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
+
                             <div>
-                                <button onClick={() => {
-                                    redirectToAuthUrl()
-                                }} className="mt-4 w-full flex flex-row cursor-pointer  bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg transition">
+                                <label className="block text-blue-100 mb-2 font-medium">
+                                    Choose an authentication method
+                                </label>
+                                <div>
+                                    <button
+                                        onClick={() => {
+                                            redirectToAuthUrl(selectedNetwork);
+                                        }}
+                                        className="mt-4 w-full flex flex-row cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg transition"
+                                    >
+                                        <GoogleIcon size={30} />
+                                        <div className="my-auto ml-2">
+                                            Sign in with Google
+                                        </div>
+                                        <ArrowRight className="ml-auto my-auto" />
+                                    </button>
+                                </div>
 
-                                    <GoogleIcon size={30} />
-                                    <div className="my-auto ml-2">
-                                        Sign in with Google
-                                    </div>
-                                    <ArrowRight className="ml-auto my-auto" />
-
-                                </button>
                             </div>
                         </div>
-                    </motion.div></div>)
 
-            }
+
+                    </motion.div>
+                </div>
+            )}
 
 
             {!isConnected && (

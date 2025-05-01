@@ -34,11 +34,12 @@ const Provider = ({ children }: any) => {
       user: undefined,
       emailAddress: undefined,
       loading: true,
-      profile: undefined
+      profile: undefined,
+      network: "testnet"
     }
   )
 
-  const { user, profile } = values
+  const { user, profile, network } = values
 
   const isConnected = !!address
 
@@ -73,7 +74,7 @@ const Provider = ({ children }: any) => {
       })
     }
   }, 3000)
- 
+
 
   useEffect(() => {
     const initialUser = sessionStorage.getItem("user");
@@ -97,7 +98,7 @@ const Provider = ({ children }: any) => {
     router.push("/");
   };
 
-  const redirectToAuthUrl = () => {
+  const redirectToAuthUrl = (networkName: "mainnet" | "testnet" = "mainnet") => {
     router.push("/auth");
 
     const protocol = window.location.protocol;
@@ -107,14 +108,17 @@ const Provider = ({ children }: any) => {
     enokiFlow
       .createAuthorizationURL({
         provider: "google",
-        network: "testnet",
+        network: networkName,
         clientId: process.env.GOOGLE_CLIENT_ID || "",
         redirectUrl: customRedirectUri,
         extraParams: {
-          scope: ["openid", "email", "profile",],
+          scope: ["openid", "email", "profile"]
         },
       })
       .then((url) => {
+        dispatch({
+          network: networkName
+        })
         router.push(url);
       })
       .catch((err) => {
@@ -171,13 +175,15 @@ const Provider = ({ children }: any) => {
       user,
       address,
       getBalance,
-      profile
+      profile,
+      network
     }), [
     isConnected,
     user,
     address,
     getBalance,
-    profile
+    profile,
+    network
   ])
 
   return (

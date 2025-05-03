@@ -151,7 +151,7 @@ const HowItWorks = () => {
         {/* How to use section (common for both methods) */}
         <div className="mt-16">
             <div className="text-center mb-10">
-                <h3 className="text-2xl font-bold text-white mb-2">Start Using Natural Language</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">Chat to Transact on Sui</h3>
                 <p className="text-blue-100/80 max-w-2xl mx-auto">
                 Once configured, you can initiate on-chain transactions on Sui just by chatting. With zkLogin, there's no need to manage any private keys 
                 </p>
@@ -164,7 +164,7 @@ const HowItWorks = () => {
                         <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
                         <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
-                    <div className="text-blue-200 text-sm">Claude Desktop</div>
+                    <div className="text-blue-200 text-sm">MCP-compatible AI Client</div>
                     <div></div>
                 </div>
 

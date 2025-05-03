@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Wallet, Code, Zap, Command, Infinity, Banknote, ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Hero() {
 
@@ -26,12 +27,17 @@ export default function Hero() {
 
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4   mb-16">
-                            <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all flex items-center justify-center">
-                                Setup<ArrowRight className="ml-2 w-4 h-4" />
-                            </button>
-                            <button className="px-7 py-3 bg-blue-800/40 hover:bg-blue-700/50 rounded-lg font-medium text-blue-200 transition flex items-center justify-center border border-blue-700/40">
-                                Documentation
-                            </button>
+                            <Link href="/dashboard">
+                                <button className="px-8 py-3 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all flex items-center justify-center">
+                                    Setup<ArrowRight className="ml-2 w-4 h-4" />
+                                </button>
+                            </Link> 
+                            <Link href="https://github.com/tamago-labs/sui-mcp-client" target="_blank">
+                                <button className="px-7 py-3 bg-blue-800/40 hover:bg-blue-700/50 rounded-lg font-medium text-blue-200 transition flex items-center justify-center border border-blue-700/40 cursor-pointer">
+                                    Documentation
+                                </button>
+                            </Link>
+
                         </div>
 
                     </div>

@@ -1,6 +1,8 @@
 "use client"
 
+
 import Hero from "@/components/Hero";
+import KeyBenefits from "@/components/KeyBenefits";
 import HowItWorks from "@/components/HowItWorks";
 import SupportedList from "@/components/SupportedList";
 import { Check } from "lucide-react"
@@ -12,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <KeyBenefits/>
       <HowItWorks />
       <SupportedList />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">

@@ -14,7 +14,7 @@ import { ArrowRight, User, Mail, X, Globe, Check, Beaker, Info } from "lucide-re
 const LoginButton = () => {
 
     const ctx = useSuiClientContext();
- 
+
 
     const [selectedNetwork, setSelectedNetwork] = useState<"mainnet" | "testnet">('mainnet'); // Default to mainnet
     const [modal, setModal] = useState<boolean>(false)
@@ -34,10 +34,10 @@ const LoginButton = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
-                        className="bg-blue-800 z-20 rounded-xl border text-white border-blue-700 p-6 max-w-2xl w-full"
+                        className="bg-blue-800 z-20 rounded-xl border text-white border-blue-700 p-6 max-w-lg w-full"
                     >
                         <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-xl font-bold">Authentication Settings</h3>
+                            <h3 className="text-xl font-bold">Login with zkLogin</h3>
                             <button
                                 className="text-blue-100/80 hover:text-white"
                                 onClick={() => setModal(false)}
@@ -48,7 +48,7 @@ const LoginButton = () => {
 
                         {/* Network Selection */}
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4 mb-2">
                             <div className=" ">
                                 <label className="block text-blue-100 mb-2 font-medium">
                                     Select Network
@@ -98,14 +98,14 @@ const LoginButton = () => {
 
                             <div>
                                 <label className="block text-blue-100 mb-2 font-medium">
-                                    Choose an authentication method
+                                    Choose Authentication Method
                                 </label>
                                 <div>
                                     <button
                                         onClick={() => {
                                             redirectToAuthUrl(selectedNetwork);
                                         }}
-                                        className="mt-4 w-full flex flex-row cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg transition"
+                                        className="mt-4 w-full flex flex-row cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition"
                                     >
                                         <GoogleIcon size={30} />
                                         <div className="my-auto ml-2">
@@ -139,11 +139,6 @@ const LoginButton = () => {
                 </button>
             )}
 
-            {/*{isConnected && (
-                <Link href="/dashboard" className="w-[150px]">
-                    <User size={24} className={`my-auto mx-auto cursor-pointer mb-0.5 ${path === "/dashboard" ? "text-blue-400" : "text-white hover:text-blue-400"} `} />
-                </Link>
-            )}*/}
         </div>
     )
 }

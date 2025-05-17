@@ -15,23 +15,22 @@ export default function Hero() {
                     {/* Left content */}
                     <div className="w-full lg:w-3/5 text-white">
 
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                            Seamless AI-to-Sui <br />
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+                            Let the Smartest AI <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
-                                with zkLogin
+                                Simplify Your Journey
                             </span>
                         </h1>
 
-                        <p className="text-lg text-blue-100/80 mb-8 max-w-xl">
-                            Specialized Model Context Protocol service enabling AI models to seamlessly interact with the Sui blockchain ecosystem through zkLogin
-
+                        <p className="text-sm md:text-lg text-blue-100/80 mb-8 max-w-xl">
+                            Model Context Protocol service bridging AI intelligence for simplified development and more on Sui with zkLogin
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4   mb-16">
+                        <div className="flex  flex-row gap-2 text-sm sm:text-base sm:gap-4   mb-16">
                             <Link href="/dashboard">
                                 <button className="px-8 py-3 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all flex items-center justify-center">
                                     Setup<ArrowRight className="ml-2 w-4 h-4" />
                                 </button>
-                            </Link> 
+                            </Link>
                             <Link href="https://github.com/tamago-labs/sui-mcp-client" target="_blank">
                                 <button className="px-7 py-3 bg-blue-800/40 hover:bg-blue-700/50 rounded-lg font-medium text-blue-200 transition flex items-center justify-center border border-blue-700/40 cursor-pointer">
                                     Documentation

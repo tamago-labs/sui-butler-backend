@@ -22,7 +22,7 @@ export default function Home() {
         <div className="  rounded-2xl overflow-hidden border border-blue-700/30 shadow-xl">
           <div className="grid grid-cols-1 gap-8">
             {/* Left Side - Content */}
-            <div className="p-10 lg:p-12 flex flex-col justify-center">
+            <div className="p-10 px-4 lg:p-12 flex flex-col justify-center">
 
               <p className="text-blue-100/90 text-lg mb-8">
                 See real examples of how Sui Butler enables AI assistants to manage your crypto portfolio, develop smart contracts, and govern DeFi protocols.
@@ -62,7 +62,7 @@ export default function Home() {
 
               <Link
                 href="/playground"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-4 rounded-lg font-medium text-lg transition-all shadow-lg hover:shadow-xl group"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-4 rounded-lg font-medium text-base md:text-lg transition-all shadow-lg hover:shadow-xl group"
               >
                 Explore the Playground
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

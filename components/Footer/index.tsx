@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="  py-5 border-t-2 border-white/5  bg-none">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="  text-sm   text-white flex flex-row">
-                        <div className='hidden md:flex flex-1'>
+                        <div className='flex flex-1'>
                             © {new Date().getFullYear() + ' '}
                             <Link href="https://tamagolabs.com" target="_blank" className="ml-1 text-white transition ">
                                 Sui Butler

@@ -25,7 +25,7 @@ const ToolsContainer = () => {
         <tbody className="divide-y divide-blue-800/40">
           {/* Wallet & Network Operations */}
           <tr className="hover:bg-blue-800/20 transition-colors">
-            <td className="px-6 py-4 text-blue-200 align-top" rowSpan="2">
+            <td className="px-6 py-4 text-blue-200 align-top" rowSpan={2}>
               <div className="flex items-center">
                 <Wallet className="w-5 h-5 text-cyan-400 mr-2" />
                 <span>Wallet</span>
@@ -48,7 +48,7 @@ const ToolsContainer = () => {
           
           {/* Token Transfers & DeFi */}
           <tr className="hover:bg-blue-800/20 transition-colors">
-            <td className="px-6 py-4 text-blue-200 align-top" rowSpan="3">
+            <td className="px-6 py-4 text-blue-200 align-top" rowSpan={3}>
               <div className="flex items-center">
                 <Coins className="w-5 h-5 text-cyan-400 mr-2" />
                 <span>Token Transfers & DeFi</span>
@@ -71,7 +71,7 @@ const ToolsContainer = () => {
           
           {/* Staking Operations */}
           <tr className="hover:bg-blue-800/20 transition-colors">
-            <td className="px-6 py-4 text-blue-200 align-top" rowSpan="3">
+            <td className="px-6 py-4 text-blue-200 align-top" rowSpan={3}>
               <div className="flex items-center">
                 <DollarSign className="w-5 h-5 text-cyan-400 mr-2" />
                 <span>Staking Operations</span>
@@ -107,7 +107,7 @@ const ToolsContainer = () => {
           
           {/* SNS Domain Services */}
           <tr className="hover:bg-blue-800/20 transition-colors">
-            <td className="px-6 py-4 text-blue-200 align-top" rowSpan="2">
+            <td className="px-6 py-4 text-blue-200 align-top" rowSpan={2}>
               <div className="flex items-center">
                 <Globe className="w-5 h-5 text-cyan-400 mr-2" />
                 <span>SNS Domain Services</span>
@@ -125,7 +125,7 @@ const ToolsContainer = () => {
           
           {/* Sui CLI Integration */}
           <tr className="hover:bg-blue-800/20 transition-colors">
-            <td className="px-6 py-4 text-blue-200 align-top" rowSpan="9">
+            <td className="px-6 py-4 text-blue-200 align-top" rowSpan={9}>
               <div className="flex items-center">
                 <Terminal className="w-5 h-5 text-cyan-400 mr-2" />
                 <span>Sui CLI Integration</span>
@@ -178,7 +178,7 @@ const ToolsContainer = () => {
           
           {/* Price Data (Pyth) */}
           <tr className="hover:bg-blue-800/20 transition-colors">
-            <td className="px-6 py-4 text-blue-200 align-top" rowSpan="3">
+            <td className="px-6 py-4 text-blue-200 align-top" rowSpan={3}>
               <div className="flex items-center">
                 <LineChart className="w-5 h-5 text-cyan-400 mr-2" />
                 <span>Price Data (Pyth)</span>

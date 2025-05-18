@@ -26,7 +26,7 @@ const Header = () => {
             </div>
             
             {/* Desktop navigation */}
-            <nav className="hidden md:flex space-x-10">
+            <nav className="hidden md:flex space-x-15">
                 <Link href="/dashboard" className={` ${path === "/dashboard" ? "text-white font-semibold" : "text-blue-100 hover:text-white "} transition-colors`}>
                     Dashboard
                 </Link>

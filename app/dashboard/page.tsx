@@ -1,4 +1,4 @@
-import DashboardContainer from "@/components/Dashboard";
+import DashboardContainer from "@/components/DashboardNew";
 
 
 

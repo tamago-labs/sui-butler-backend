@@ -12,9 +12,9 @@ const SoraFont = Sora({
 
 
 export const metadata: Metadata = {
-  title: "Sui Serverless MCP | Connect AI to Sui Blockchain with zkLogin",
-  description: "Specialized Model Context Protocol service enabling AI models to seamlessly interact with the Sui blockchain ecosystem through zkLogin",
-  keywords: "Sui, blockchain, AI, MCP, zkLogin, Claude, cryptocurrency, Web3",
+  title: "Sui Butler | Let the smartest AI to simplify your Sui journey",
+  description: "Sui Butler is a specialized Model Context Protocol (MCP) service that enables AI models to seamlessly interact with the Sui blockchain ecosystem using zkLogin.",
+  keywords: "Sui Butler, Sui, blockchain, AI, MCP, zkLogin, Claude, cryptocurrency, Web3",
   authors: [
     {
       name: "Tamago Labs Team"

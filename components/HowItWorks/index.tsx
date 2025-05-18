@@ -55,11 +55,11 @@ const HowItWorks = () => {
                     <pre className="text-blue-300 font-mono text-xs overflow-auto">
                         {`{
   "mcpServers": {
-    "sui-mcp": {
+    "sui-butler": {
       "command": "npx",
       "args": [
         "-y",
-        "sui-serverless-mcp",
+        "sui-butler",
         "--sui_private_key=YOUR_PRIVATE_KEY", 
         "--sui_network=mainnet"
       ],
@@ -122,11 +122,11 @@ const HowItWorks = () => {
                     <pre className="text-blue-300 font-mono text-xs overflow-auto">
                         {`{
   "mcpServers": {
-    "sui-mcp": {
+    "sui-butler": {
       "command": "npx",
       "args": [
         "-y",
-        "sui-serverless-mcp",
+        "sui-butler",
         "--sui_access_key=YOUR_ACCESS_KEY", 
         "--sui_network=mainnet"
       ],

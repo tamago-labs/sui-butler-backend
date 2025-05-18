@@ -27,13 +27,14 @@ export default function DashboardContainer() {
 
     if (profile) {
       (async () => {
-        setList([])
         const { data } = await profile.pendingTransactions()
         setList(data)
       })()
     }
 
   }, [profile, tick])
+
+
 
 
   const getRelativeTime = (dateString: any) => {
@@ -89,6 +90,14 @@ export default function DashboardContainer() {
 
   }, [])
 
+  const totalPending = list.reduce((output: number, item: any) => {
+    return item.status === "pending" ? output + 1 : output
+  }, 0)
+
+  const totalSuccess = list.reduce((output: number, item: any) => {
+    return item.status === "success" ? output + 1 : output
+  }, 0)
+
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
@@ -98,14 +107,14 @@ export default function DashboardContainer() {
             Manage your Sui Butler transactions
           </p>
         </div>
-        {profile && (
+        {/* {profile && (
           <button
             onClick={() => setState({ tick: tick + 1 })}
             className="mt-4 md:mt-0 flex items-center justify-center px-4 py-2 bg-blue-800/50 hover:bg-blue-700/50 text-blue-100 rounded-lg transition-colors"
           >
             <RefreshCcw className="w-4 h-4 mr-2" /> Refresh
           </button>)
-        }
+        }*/}
       </div>
 
       {!profile && (
@@ -162,7 +171,7 @@ export default function DashboardContainer() {
                   <ArrowRight className="w-5 h-5 text-blue-300" />
                 </div>
               </div>
-              {/* <p className="text-3xl font-bold text-white mt-2">{stats.totalTransactions}</p> */}
+              <p className="text-3xl font-bold text-white mt-2">{list.length}</p>
             </div>
 
             <div className="bg-gradient-to-br from-blue-800/40 to-blue-900/40 backdrop-blur-sm rounded-xl p-6 border border-blue-700/20 shadow-lg shadow-blue-900/20">
@@ -172,7 +181,7 @@ export default function DashboardContainer() {
                   <AlertCircle className="w-5 h-5 text-yellow-300" />
                 </div>
               </div>
-              {/* <p className="text-3xl font-bold text-white mt-2">{stats.pendingTransactions}</p> */}
+              <p className="text-3xl font-bold text-white mt-2">{totalPending}</p>
             </div>
 
             <div className="bg-gradient-to-br from-blue-800/40 to-blue-900/40 backdrop-blur-sm rounded-xl p-6 border border-blue-700/20 shadow-lg shadow-blue-900/20">
@@ -182,7 +191,7 @@ export default function DashboardContainer() {
                   <Check className="w-5 h-5 text-green-300" />
                 </div>
               </div>
-              {/* <p className="text-3xl font-bold text-white mt-2">{stats.successfulTransactions}</p> */}
+              <p className="text-3xl font-bold text-white mt-2">{totalSuccess}</p>
             </div>
           </div>
 

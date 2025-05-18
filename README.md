@@ -1,10 +1,10 @@
-# Sui Serverless MCP Core
+# Sui Butler Backend
 
-This repository is part of the **SUI Serverless MCP** system — a server implementation for enabling Model Context Protocol (MCP) service on the Sui blockchain using zkLogin.
+This repository is part of the **SUI Butler** system — a server implementation for enabling Model Context Protocol (MCP) service on the Sui blockchain using zkLogin.
 
 It contains the backend infrastructure built with AWS Serverless Stack to support MCP features, including APIs, databases, and the user dashboard for managing access keys and approving transactions.
 
-**Note:** You do not need to deploy this package if you're using Private Key mode entirely. Refer to the [main repo](https://github.com/tamago-labs/sui-mcp-client) for more details.
+**Note:** We can use without the backend with the private key mode. Refer to the [main repo](https://github.com/tamago-labs/sui-butler) for more details.
 
 ## System Overview
 

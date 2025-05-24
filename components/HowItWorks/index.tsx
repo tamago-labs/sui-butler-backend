@@ -6,15 +6,15 @@ import { Lock, Shield, Key, ArrowLeftRight, Send, LogIn } from 'lucide-react';
 const HowItWorks = () => {
     return <div className="max-w-7xl relative mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Get Started</h2>
-            <p className="text-lg text-blue-100/80 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Get Started</h2>
+            <p className="text-sm md:text-lg text-blue-100/80 max-w-2xl mx-auto">
                 Choose your preferred option to interact with the Sui blockchain ecosystem on an MCP-compatible AI client
             </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Left Column - Private Key Flow */}
-            <div className="bg-blue-900/40 border border-blue-700/30 rounded-xl p-8">
+            <div className="bg-blue-900/40 border border-blue-700/30 rounded-xl py-8 px-4 md:p-8">
                 <div className="flex items-center mb-6">
                     <Key className="w-8 h-8 text-blue-400 mr-3" />
                     <h3 className="text-2xl font-bold text-white">Connect with Private Key</h3>
@@ -81,7 +81,7 @@ const HowItWorks = () => {
             </div>
 
             {/* Right Column - zkLogin Flow */}
-            <div className="bg-blue-900/40 border border-blue-700/30 rounded-xl p-8">
+            <div className="bg-blue-900/40 border border-blue-700/30 rounded-xl  py-8 px-4 md:p-8">
                 <div className="flex items-center mb-6">
                     <LogIn className="w-8 h-8 text-blue-400 mr-3" />
                     <h3 className="text-2xl font-bold text-white">Connect with zkLogin</h3>
@@ -151,8 +151,8 @@ const HowItWorks = () => {
         {/* How to use section (common for both methods) */}
         <div className="mt-16">
             <div className="text-center mb-10">
-                <h3 className="text-2xl font-bold text-white mb-2">Chat to Transact on Sui</h3>
-                <p className="text-blue-100/80 max-w-2xl mx-auto">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Chat to Transact on Sui</h3>
+                <p className="text-blue-100/80 max-w-2xl mx-auto text-sm md:text-base">
                 Once configured, you can initiate on-chain transactions on Sui just by chatting. With zkLogin, there's no need to manage any private keys 
                 </p>
             </div>

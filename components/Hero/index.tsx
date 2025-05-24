@@ -40,7 +40,7 @@ export default function Hero() {
 
                     </div>
                     {/* Right illustration */}
-                    <div className="hidden lg:flex lg:w-2/5">
+                    <div className=" flex w-full lg:w-2/5">
                         <GridRippleEffect />
                     </div>
 

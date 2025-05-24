@@ -10,19 +10,10 @@ const SupportedList = () => {
 
     return (
         <section className={`  min-h-[700px]  relative mx-auto px-4 sm:px-6 lg:px-8 py-24`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* <h2 className="text-4xl font-bold text-white text-center mb-16">Supported Technologies</h2> */}
-                {/* <div className="text-center mb-8">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Seamless Web3 Access</h2>
-                    <div className="w-20 h-1 bg-teal-500 mx-auto mb-4"></div>
-                    <p className="text-teal-100/80 max-w-2xl text-sm md:text-base mx-auto">
-                        We integrate mature Agent Kits from across the Web3 ecosystem, giving you instant access to 100+ protocols with no additional integration work
-                    </p>
-                </div> */}
-
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">  
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Available Features</h2>
-                    <p className="text-lg text-blue-100/80 max-w-2xl mx-auto">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Available Features</h2>
+                    <p className="text-sm md:text-lg text-blue-100/80 max-w-2xl mx-auto">
                     Turn your everyday AI assistant into a fully functional Web3 agent to manage Sui accounts, perform DeFi action & many more to come
                     </p>
                 </div>

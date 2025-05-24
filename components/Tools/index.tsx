@@ -5,8 +5,8 @@ const ToolsContainer = () => {
 	return (
 		<section className="container relative mx-auto px-4 py-16 max-w-6xl">
   <div className="text-center mb-12">
-    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Available Tools</h2>
-    <p className="text-lg text-blue-100/80 max-w-3xl mx-auto">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Available Tools</h2>
+    <p className="text-sm md:text-lg text-blue-100/80 max-w-3xl mx-auto">
      Sui Butler provides a comprehensive suite of MCP tools to support any workflow
     </p>
   </div>
@@ -39,12 +39,7 @@ const ToolsContainer = () => {
             <td className="px-6 py-4 font-mono text-sm text-white">sui_get_all_balances</td>
             <td className="px-6 py-4 text-blue-100 hidden md:table-cell">Get all token balances</td>
             <td className="px-6 py-4 text-blue-100/80 hidden lg:table-cell">"Show my token balances"</td>
-          </tr>
-          {/*<tr className="hover:bg-blue-800/20 transition-colors">
-            <td className="px-6 py-4 font-mono text-sm text-white">sui_cli_active_env</td>
-            <td className="px-6 py-4 text-blue-100 hidden md:table-cell">Get current network</td>
-            <td className="px-6 py-4 text-blue-100/80 hidden lg:table-cell">"Which network am I connected to?"</td>
-          </tr>*/}
+          </tr> 
           
           {/* Token Transfers & DeFi */}
           <tr className="hover:bg-blue-800/20 transition-colors">
@@ -71,7 +66,7 @@ const ToolsContainer = () => {
           
           {/* Staking Operations */}
           <tr className="hover:bg-blue-800/20 transition-colors">
-            <td className="px-6 py-4 text-blue-200 align-top" rowSpan={3}>
+            <td className="px-6 py-4 text-blue-200 align-top" rowSpan={4}>
               <div className="flex items-center">
                 <DollarSign className="w-5 h-5 text-cyan-400 mr-2" />
                 <span>Staking Operations</span>
@@ -80,6 +75,11 @@ const ToolsContainer = () => {
             <td className="px-6 py-4 font-mono text-sm text-white">sui_stake</td>
             <td className="px-6 py-4 text-blue-100 hidden md:table-cell">Stake SUI tokens to a validator</td>
             <td className="px-6 py-4 text-blue-100/80 hidden lg:table-cell">"Stake 100 SUI to validator X"</td>
+          </tr>
+          <tr className="hover:bg-blue-800/20 transition-colors">
+            <td className="px-6 py-4 font-mono text-sm text-white">sui_get_validators</td>
+            <td className="px-6 py-4 text-blue-100 hidden md:table-cell">Get all active validators</td>
+            <td className="px-6 py-4 text-blue-100/80 hidden lg:table-cell">"What are good validator to stake with?"</td>
           </tr>
           <tr className="hover:bg-blue-800/20 transition-colors">
             <td className="px-6 py-4 font-mono text-sm text-white">sui_get_stake</td>

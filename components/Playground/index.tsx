@@ -33,18 +33,23 @@ export default function PlaygroundContainer() {
             examples: [
                 {
                     title: "Check Token Prices",
-                    prompt: "What are the current prices for Bitcoin, Ethereum, Solana and SUI?",
-                    result: "Based on Pyth price oracle data, here are the current prices:\n\n- Bitcoin (BTC): $97,452.83 (±$12.40)\n- Ethereum (ETH): $3,785.12 (±$2.87)\n- Solana (SOL): $187.22 (±$0.17)\n- Sui (SUI): $1.43 (±$0.002)\n\nThese prices were updated within the last 30 seconds. Would you like me to help you swap any tokens or analyze market trends?"
+                    prompt: "help check major token prices including SUI?",
+                    result: "Based on Pyth price oracle data, here are the current prices:\n\n- Bitcoin (BTC): $97,452.83 (±$12.40)\n- Ethereum (ETH): $3,785.12 (±$2.87)\n- Solana (SOL): $187.22 (±$0.17)\n- Sui (SUI): $3.43 (±$0.002)\n\nThese prices were updated within the last 30 seconds. Would you like me to help you swap any tokens or analyze market trends?"
                 },
                 {
                     title: "Execute Token Swap",
-                    prompt: "I want to swap 10 SUI to USDC. What rate would I get right now? If it's good, please execute the swap.",
+                    prompt: "help swap 10 SUI to USDC. execute it if the rate is 1 SUI is more than 3 USDC",
                     result: "I've checked the current swap rates via Cetus Aggregator for 10 SUI to USDC:\n\n- Rate: 1 SUI = 1.428 USDC\n- You will receive: ~14.28 USDC\n- Slippage: 0.5%\n- Min. received: 14.21 USDC\n- Price impact: 0.05%\n\nThis appears to be a favorable rate compared to the 24h average. Would you like me to execute this swap? If yes, I'll need your approval in the dashboard."
                 },
                 {
                     title: "Portfolio Analysis",
-                    prompt: "Analyze my portfolio and recommend rebalancing options based on current market conditions.",
+                    prompt: "check my portfolio also read the popular cryto websites to analyze the market conditions and suggest what I need to do the next",
                     result: "I've analyzed your wallet holdings and current market conditions:\n\nCurrent Portfolio:\n- SUI: 85.4% (315.7 SUI worth $451.45)\n- USDC: 14.6% (54.12 USDC worth $54.12)\n\nObservations:\n- Your portfolio is heavily weighted toward SUI (85.4%)\n- SUI price is up 12.8% in the past week, but showing signs of resistance at $1.45\n- BTC dominance is rising, suggesting possible altcoin correction\n\nRecommended rebalancing:\n1. Consider reducing SUI exposure to 60-70%\n2. Swap ~60 SUI to USDC to protect against volatility\n3. Consider diversifying 10-15% into BTC as a hedge\n\nWould you like me to prepare any of these swaps for you?"
+                },
+                {
+                    title: "SUI Staking",
+                    prompt: "what are good validators to staking my SUI with?",
+                    result: "Here are two good validator options for staking your SUI: \n\nOKXEarn – Offers a 2.6% APY, making it a great choice if you're looking for higher returns. \n\nMysten – Slightly lower at 2.5% APY, but backed by higher reputation and stronger track record within the Sui ecosystem."
                 }
             ]
         },
@@ -81,17 +86,17 @@ export default function PlaygroundContainer() {
             examples: [
                 {
                     title: "Generate Test Cases",
-                    prompt: "Analyze my Move contract and create comprehensive test cases for all public functions.",
-                    result: "I've analyzed your Move contract in the current workspace and identified 4 public functions that require testing:\n\n1. `create_post`\n2. `update_post`\n3. `delete_post`\n4. `transfer_ownership`\n\nI've generated comprehensive test cases for each function, including positive tests, edge cases, and error conditions. The tests cover:\n\n- Authentication checks\n- Input validation\n- State transitions\n- Event emissions\n- Error handling\n\nWould you like me to write these tests in your project's test directory? I'll use the Sui Move test framework with proper assertions and mocks."
+                    prompt: "Help check my Move contract on the provided folder and create comprehensive test cases for all public functions.",
+                    result: "I've analyzed your Move contract in the current folder and identified 4 public functions that require testing:\n\n1. `create_post`\n2. `update_post`\n3. `delete_post`\n4. `transfer_ownership`\n\nI've generated comprehensive test cases for each function, including positive tests, edge cases, and error conditions. The tests cover:\n\n- Authentication checks\n- Input validation\n- State transitions\n- Event emissions\n- Error handling\n\nWould you like me to write these tests in your project's test directory? I'll use the Sui Move test framework with proper assertions and mocks."
                 },
                 {
                     title: "Build & Test Package",
-                    prompt: "Run tests for my Move package and analyze the results for any issues.",
+                    prompt: "Help run tests with SUI CLI tools on the test files you have created",
                     result: "I'm running the Sui CLI to build and test your Move package...\n\n✅ Build completed successfully.\n\nRunning Move unit tests:\n[PASS] 0x123::blog::test_create_post\n[PASS] 0x123::blog::test_update_post\n[PASS] 0x123::blog::test_delete_post\n[FAIL] 0x123::blog::test_transfer_ownership\n\nTest result: FAILED. Total tests: 4; passed: 3; failed: 1\n\nAnalysis of failed test:\n- The `test_transfer_ownership` test failed because there's a missing authorization check in the transfer_ownership function.\n- Line 142: The function should verify that the caller is the current owner before allowing the transfer.\n- Recommendation: Add a precondition check using `assert!(tx_context::sender(ctx) == post.owner, ERROR_NOT_OWNER);`\n\nWould you like me to fix this issue in your code?"
                 },
                 {
                     title: "Deploy Contract",
-                    prompt: "Publish my Move package to the Sui testnet and explain what I need to do next.",
+                    prompt: "help publish my Move package to the Sui testnet and capture all package IDs, main object IDs and write it on README.md file ",
                     result: "I'll publish your Move package to the Sui testnet using the Sui CLI.\n\nRunning `sui client publish` command...\n\nTransaction Digest: 7YcEV4u1UfU96hqPKH8P5vufeUbfA5S6qhzpgbKJwvCR\n\n✅ Package published successfully!\n\n📦 Package ID: 0x42a97a0f043e95fae576bb0c27933ac37e9d5c2821c38ab3cd8d7b22d38573b2\n\n🔑 Upgrade Cap: 0x871c88260dddaf44dad9f0cc9d2e7972f809b81dd23ef37bee1f9b4730a14f9e\n\nImportant next steps:\n1. **Save your Package ID** - You'll need this to interact with your contract\n2. **Store your Upgrade Cap** - This unique object allows you to upgrade your package later\n3. **Interact with your contract** - Use `sui client call` to test your functions\n\nWould you like me to help you initialize your contract or call any of its functions?"
                 }
             ]
